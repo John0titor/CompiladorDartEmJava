@@ -7,25 +7,27 @@ import java.util.Set;
 import javax.lang.model.util.ElementScanner6;
 
 public class Token {
-	public static final int TK_INT       = 0;
-	public static final int TK_DOUBLE    = 1;
-	public static final int TK_BOOL      = 2;
-	public static final int TK_STRING    = 3;
-	public static final int TK_VARTYPE   = 4;
-	public static final int TK_VARNAME   = 5;
-	public static final int TK_FUCNTION  = 6;
-	public static final int TK_OP        = 7;
-	public static final int TK_COMP      = 8;
-	public static final int TK_IF        = 9;
-	public static final int TK_ELSE      =10;
-	public static final int TK_SFUCNTION =11;
-	public static final int TK_ATRB      =12;
-	public static final int TK_ENDLINE   =13;
-	public static final int TK_WORD      =14;
-	public static final int VAR_INT      =15;
-	public static final int VAR_DOUBLE   =16;
-	public static final int VAR_BOOL     =17;
-	public static final int VAR_STRING   =18;
+	public static final int TK_INT       = 0; //quando encontra um int, ex: 1234, 5678, 10...
+	public static final int TK_DOUBLE    = 1; //quando encontra um oduble, ex: 123.4, 5.678, 1.1...
+	public static final int TK_BOOL      = 2; //quando encontra true ou false
+	public static final int TK_STRING    = 3; //quando encontra uma string, ex: "abc", "a1b2c3"...
+	public static final int TK_VARTYPE   = 4; //quando encontra um tipo de variavel, ex: int, bool, double...
+	public static final int TK_VARNAME   = 5; //quando encontra o nome de uma variavel na declaração dela, ex: dias, texto, nome, anos...
+	public static final int TK_FUCNTION  = 6; //quando encontra uma função void, neste programa: write
+	public static final int TK_OP        = 7; //quando encontra um operador: +, -, *...
+	public static final int TK_COMP      = 8; //quando encontra um comparador: >, ==, <=..
+	public static final int TK_IF        = 9; //quando encontra um if
+	public static final int TK_ELSE      =10; //quando encontra um else
+	public static final int TK_SFUCNTION =11; //quando encontrauma fucao q retorna String, neste caso: read (q não é read)
+	public static final int TK_ATRB      =12; //quando encontra =
+	public static final int TK_ENDLINE   =13; //quando encontra ;
+	public static final int TK_WORD      =14; //qualquer palavra. (deprecated, now is: varname);
+	public static final int VAR_INT      =15; //quando encontra uma variavel ja declarada int
+	public static final int VAR_DOUBLE   =16; // |||||||||||||||||||||||||||||||||||||||  double
+	public static final int VAR_BOOL     =17; // |||||||||||||||||||||||||||||||||||||||  bool
+	public static final int VAR_STRING   =18; // |||||||||||||||||||||||||||||||||||||||  String
+
+	//falta implementar os tokens ( ) { }
 	
 	public static final String TK_TEXT[] = {
 			"INT", "DOUBLE", "BOOL", "STRING", "VARTYPE", "VARNAME", "FUNCTION", "OP", "COMP", "IF", "ELSE", "SFUNCTION", "ATRIBUICAO", "ENDLINE", "WORD", "VARIAVEL INT", "VARIAVEL DOUBLE" , "VARIAVEL BOOL", "VARIAVEL STRING"
