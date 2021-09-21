@@ -77,6 +77,42 @@ public class Scanner {
 					term+=currentChar;
 					estado=15;
 				}
+				else if(currentChar == '('){
+					term += currentChar;
+					token = new Token();
+					token.setType(Token.L_BRACKET);
+					token.setText(term);
+					token.setLine(line);
+					token.setColumn(column - term.length());
+					return token;
+				}
+				else if(currentChar == ')'){
+					term += currentChar;
+					token = new Token();
+					token.setType(Token.R_BRACKET);
+					token.setText(term);
+					token.setLine(line);
+					token.setColumn(column - term.length());
+					return token;
+				}
+				else if(currentChar == '{'){
+					term += currentChar;
+					token = new Token();
+					token.setType(Token.L_CBRACKET);
+					token.setText(term);
+					token.setLine(line);
+					token.setColumn(column - term.length());
+					return token;
+				}
+				else if(currentChar == '}'){
+					term += currentChar;
+					token = new Token();
+					token.setType(Token.R_CBRACKET);
+					token.setText(term);
+					token.setLine(line);
+					token.setColumn(column - term.length());
+					return token;
+				}
 				else {
 					//throw new IsiLexicalException("Unrecognized SYMBOL");
 				}

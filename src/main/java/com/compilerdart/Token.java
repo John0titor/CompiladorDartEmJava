@@ -26,11 +26,16 @@ public class Token {
 	public static final int VAR_DOUBLE   =16; // |||||||||||||||||||||||||||||||||||||||  double
 	public static final int VAR_BOOL     =17; // |||||||||||||||||||||||||||||||||||||||  bool
 	public static final int VAR_STRING   =18; // |||||||||||||||||||||||||||||||||||||||  String
-
-	//falta implementar os tokens ( ) { }
+	public static final int L_BRACKET    =19; //quando encontra um (
+	public static final int R_BRACKET    =20; //quando encontra um )
+	public static final int L_CBRACKET   =21; //quando encontra um {
+	public static final int R_CBRACKET   =22; //quando encontra um }
 	
 	public static final String TK_TEXT[] = {
-			"INT", "DOUBLE", "BOOL", "STRING", "VARTYPE", "VARNAME", "FUNCTION", "OP", "COMP", "IF", "ELSE", "SFUNCTION", "ATRIBUICAO", "ENDLINE", "WORD", "VARIAVEL INT", "VARIAVEL DOUBLE" , "VARIAVEL BOOL", "VARIAVEL STRING"
+			"INT", "DOUBLE", "BOOL", "STRING", "VARTYPE", "VARNAME", "FUNCTION", 
+			"OP", "COMP", "IF", "ELSE", "SFUNCTION", "ATRIBUICAO", "ENDLINE", "WORD",
+			"VARIAVEL INT", "VARIAVEL DOUBLE" , "VARIAVEL BOOL", "VARIAVEL STRING",
+			"L_BRACKET", "R_BRACKET", "L_CBRACKET", "R_CBRACKET"
 	};
 
 	static List<String> variaveisInt = new ArrayList<>();
@@ -93,17 +98,22 @@ public class Token {
 	}
 
 	public void updateType() {
-		if (isVarType(this.text)) {
+		if (isVarType(this.text)) { 
 			setType(Token.TK_VARTYPE);
 			setLastVarType();
+
 		} else if (this.text.equals("true") || this.text.equals("false")) {
 			setType(Token.TK_BOOL);
+
 		} else if (this.text.equals("write")) {
 			setType(Token.TK_STRING);
+
 		} else if (this.text.equals("if")) {
 			setType(Token.TK_IF);
+
 		} else if (this.text.equals("else")) {
 			setType(Token.TK_ELSE);
+
 		} else if (isVar(this.text)){
 			switch (whichVar()) {
 				case TK_BOOL:
@@ -120,6 +130,7 @@ public class Token {
 				default:
 					break;
 			}
+
 		} else { 			
 			switch (lastVarType) {
 				case TK_BOOL:
@@ -144,6 +155,9 @@ public class Token {
 		return s.equals("int") || s.equals("double") || s.equals("bool")||s.equals("String");
 	}
 
+	//esse metodo é usado para quando uma variavel é declarada,
+	//então ele verifica qual foi o ultimo token afim de atribuir a 
+	//varivel ao seu devido array( int, double...)
 	private void setLastVarType() {
 		if (text.equals("int")) {
 			lastVarType = TK_INT;
@@ -156,10 +170,11 @@ public class Token {
 		}
 	}
 
+	//verifica se a variavel está declarada em algum tipo
 	private boolean isVar(String s) {
 		return variaveisBoolean.contains(s)||variaveisDouble.contains(s)||variaveisInt.contains(s)||variaveisString.contains(s);
 	}
-
+	//verifica em qual tipo a variavel esta declarada
 	private int whichVar() {
 		if (variaveisBoolean.contains(this.text)) {
 			return TK_BOOL;
