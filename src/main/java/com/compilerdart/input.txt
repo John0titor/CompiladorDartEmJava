@@ -1,0 +1,14 @@
+text000
+123.123
+int asdasd
+double
+bool
+String
+true
+false
+if
+asdasd
+else
+= 
+==
+/
