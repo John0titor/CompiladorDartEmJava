@@ -8,7 +8,7 @@ public class Sintatico {
     public void S() throws Exception {
         boolean continuar = true;
         do {
-            token = scanner.nextToken();
+            token = scanner.le_Token();
             switch (token.getType()) {
                 case Token.TK_VARTYPE:
                     DV();
@@ -50,19 +50,19 @@ public class Sintatico {
     }
 
     public void DV() throws Exception {
-        token = scanner.nextToken();
+        token = scanner.le_Token();
         if (token.getType() == Token.TK_VARNAME) {
             FD();
         }else{ throw new Exception("Exception message");}
     }
 
     public void FD() throws Exception {
-        token = scanner.nextToken();
+        token = scanner.le_Token();
         if (token.getType() == Token.TK_ENDLINE) {
             
         } else if ( token.getType() == Token.TK_ATRB){
             A();
-            token = scanner.nextToken();
+            token = scanner.le_Token();
             if (token.getType() == Token.TK_ENDLINE) {
                 
             } else if ( token.getType() == Token.TK_ATRB){
@@ -71,7 +71,7 @@ public class Sintatico {
     }
 
     public void A() throws Exception {
-        token = scanner.nextToken();
+        token = scanner.le_Token();
         switch (lastlastType) {
             case Token.TK_BOOL:
                 if (token.getType() == Token.TK_BOOL || token.getType() == Token.VAR_BOOL) {
@@ -100,13 +100,13 @@ public class Sintatico {
     }
 
     public void F() throws Exception {
-        token = scanner.nextToken();
+        token = scanner.le_Token();
         if (token.getType() == Token.L_BRACKET) {
-            token = scanner.nextToken();
+            token = scanner.le_Token();
             A();
-                token = scanner.nextToken();
+                token = scanner.le_Token();
                 if (token.getType() == Token.R_BRACKET) {
-                    token = scanner.nextToken();
+                    token = scanner.le_Token();
                     if (token.getType() == Token.TK_ENDLINE) {
                         
                     }else{throw new Exception("Exception message");}
@@ -116,13 +116,13 @@ public class Sintatico {
     }
 
     public void SFR() throws Exception{
-        token = scanner.nextToken();
+        token = scanner.le_Token();
         if (token.getType() == Token.L_BRACKET) {
-            token = scanner.nextToken();
+            token = scanner.le_Token();
             
-                token = scanner.nextToken();
+                token = scanner.le_Token();
                 if (token.getType() == Token.R_BRACKET) {
-                    token = scanner.nextToken();
+                    token = scanner.le_Token();
                     if (token.getType() == Token.TK_ENDLINE) {
                         
                     }else{throw new Exception("Exception message");}
@@ -132,13 +132,13 @@ public class Sintatico {
     }
 
     public void C() throws Exception {
-        token = scanner.nextToken();
+        token = scanner.le_Token();
         if (token.getType() == Token.L_BRACKET) {
-            token = scanner.nextToken();
+            token = scanner.le_Token();
             if(token.getType() == Token.VAR_BOOL || token.getType() == Token.TK_BOOL){
                 RTB();
                 if (token.getType() == Token.R_BRACKET) {
-                    token = scanner.nextToken();
+                    token = scanner.le_Token();
                     if (token.getType() == Token.L_CBRACKET) {
                         S();
                     }else{throw new Exception("Exception message");}
@@ -148,9 +148,9 @@ public class Sintatico {
     }
 
     public void RTB() throws Exception {
-        token = scanner.nextToken();
+        token = scanner.le_Token();
         if (token.getType() == Token.TK_COMP) {
-            token = scanner.nextToken();
+            token = scanner.le_Token();
             if (token.getType() == Token.VAR_BOOL || token.getType() == Token.TK_BOOL) {
                 
             }else{throw new Exception("Exception message");}
@@ -158,9 +158,9 @@ public class Sintatico {
     }
 
     public void RTD() throws Exception {
-        token = scanner.nextToken();
+        token = scanner.le_Token();
         if (token.getType() == Token.TK_OP) {
-            token = scanner.nextToken();
+            token = scanner.le_Token();
             if (token.getType() == Token.VAR_DOUBLE || token.getType() == Token.TK_DOUBLE) {
                 
             }else{throw new Exception("Exception message");}
@@ -168,9 +168,9 @@ public class Sintatico {
     }
 
     public void RTI() throws Exception {
-        token = scanner.nextToken();
+        token = scanner.le_Token();
         if (token.getType() == Token.TK_OP) {
-            token = scanner.nextToken();
+            token = scanner.le_Token();
             if (token.getType() == Token.VAR_INT || token.getType() == Token.TK_INT) {
                 
             }else{throw new Exception("Exception message");}

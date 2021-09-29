@@ -1,0 +1,11 @@
+String name = "Rafael";
+int year = 1977;
+double antennaDiameter = 3.7;
+String flybyObject;
+String image = "C://example";
+
+if (year >= 2001) {
+  print("21st century");
+} else if (year >= 1901) {
+  print("20th century");
+}

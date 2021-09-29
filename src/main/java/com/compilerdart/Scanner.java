@@ -31,7 +31,7 @@ public class Scanner {
 		}
 	}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
 	
-	public Token nextToken() {
+	public Token le_Token() {
 		char currentChar;
 		Token token;
 		String term="";
@@ -211,7 +211,7 @@ public class Scanner {
 					token.setColumn(column - term.length());
 					return token;
 				} else {
-					term+=currentChar;
+					
 					back();
 					token = new Token();
 					token.setType(Token.TK_ATRB);
