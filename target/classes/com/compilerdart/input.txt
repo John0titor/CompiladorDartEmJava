@@ -1,19 +1,25 @@
-text000
-123.123
-int asdasd
-double
-bool
-String
-true
-false
-if
-asdasd
-else
-= 
-==
-/
-(
-    {
-        
-    }
-)
+
+  int a;
+  bool b;
+  double c;
+  String d = "uUu";
+  
+  
+  
+  a=1;
+  a=a+a;
+  
+  c= 1+1.1;
+  print(c);
+  
+  if(a==2){
+    print("s");
+  }
+  
+  b = false;
+  if(b){
+    print("n");
+  }
+    
+  
+}

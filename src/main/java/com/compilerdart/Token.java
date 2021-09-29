@@ -43,7 +43,8 @@ public class Token {
 	static List<String> variaveisDouble = new ArrayList<>();
 	static List<String> variaveisBoolean = new ArrayList<>();
 
-	static int lastVarType;
+	static int lastVarType = 100;
+	static boolean lastVarTypeBool = false;
 	
 	private int    type;
 	private String text;
@@ -101,12 +102,13 @@ public class Token {
 		if (isVarType(this.text)) { 
 			setType(Token.TK_VARTYPE);
 			setLastVarType();
+			lastVarTypeBool = true;
 
 		} else if (this.text.equals("true") || this.text.equals("false")) {
 			setType(Token.TK_BOOL);
 
-		} else if (this.text.equals("write")) {
-			setType(Token.TK_STRING);
+		} else if (this.text.equals("print")) {
+			setType(Token.TK_FUCNTION);
 
 		} else if (this.text.equals("if")) {
 			setType(Token.TK_IF);
@@ -147,7 +149,13 @@ public class Token {
 				default:
 					break;
 			}
-			setType(TK_VARNAME);
+			if (lastVarTypeBool) {
+				setType(TK_VARNAME);
+				lastVarTypeBool = false;
+			} else {
+				System.out.println("erro");
+			}
+			
 		}
 	}
 
@@ -168,6 +176,10 @@ public class Token {
 		}else if (text.equals("String")){
 			lastVarType = TK_STRING;
 		}
+	}
+
+	public int getLastVarType() {
+		return lastVarType;
 	}
 
 	//verifica se a variavel está declarada em algum tipo
